@@ -8,9 +8,9 @@ pipeline {
                    scannerBuild = "${scannerHome}\\SonarQube.Scanner.MSBuild.exe"
                 }
                 withSonarQubeEnv('Sonar MS') {
-                    bat "\"${scannerBuild}\" begin /k:MyAppKey /n:MyAppName /v:1.0 /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN%"
+                    bat "'${scannerBuild}' begin /k:MyAppKey /n:MyAppName /v:1.0 /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.login=%SONAR_AUTH_TOKEN%"
                     bat 'dotnet build'
-                    bat "${scannerBuild} end /d:sonar.login=%SONAR_AUTH_TOKEN%"
+                    bat "'${scannerBuild}' end /d:sonar.login=%SONAR_AUTH_TOKEN%"
                 }
             }
         }
