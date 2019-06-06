@@ -2,20 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('SonarQube') {
             steps {
-                echo 'Building..'
-				sh 'dotnet build'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Scan') {
-            steps {
-                echo 'Deploying....'
+                def sqScannerMsBuildHome = tool 'Sonar MS'
+                echo "${sqScannerMsBuildHome}"
             }
         }
     }
