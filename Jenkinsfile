@@ -12,6 +12,7 @@ pipeline {
                     bat "dotnet \"${scannerBuild}\" begin /k:${projectKey} /n:${projectKey} /v:1.0 /d:sonar.host.url=%SONAR_HOST_URL% /d:sonar.issuesReport.html.enable=true"
                     bat 'dotnet build'
                     bat "dotnet \"${scannerBuild}\" end"
+                    bat "java -jar e:\sonar-cnes-report.jar -p ${projectKey}"
                 }
             }
         }
