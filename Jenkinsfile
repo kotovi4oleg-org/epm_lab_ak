@@ -11,7 +11,7 @@ pipeline {
                    scannerHome = tool 'SonarMS'
                 }
                 withSonarQubeEnv('Sonar MS') {
-                    echo '${scannerHome}'
+                    echo scannerHome
                 }
             }
         }
