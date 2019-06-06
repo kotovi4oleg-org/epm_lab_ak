@@ -3,8 +3,12 @@ pipeline {
 
     stages {
         stage('SonarQube') {
+            steps {
                 def sqScannerMsBuildHome = tool 'Sonar MS'
-                echo "${sqScannerMsBuildHome}"
+                withSonarQubeEnv('My SonarQube Server') {
+                  echo "${sqScannerMsBuildHome}"
+                }
+            }
         }
     }
 }
