@@ -10,7 +10,7 @@ pipeline {
                    // requires SonarQube Scanner 2.8+
                    scannerHome = tool 'SonarMS'
                 }
-                withSonarQubeEnv('My SonarQube Server') {
+                withSonarQubeEnv('Sonar MS') {
                     echo '${scannerHome}'
                 }
             }
