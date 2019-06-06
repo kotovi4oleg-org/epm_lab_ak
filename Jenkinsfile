@@ -1,12 +1,13 @@
 pipeline {
     agent any
-
+    environment {
+        SONAR = tool 'Sonar MS'
+    }
     stages {
         stage('SonarQube') {
             steps {
-                def sqScannerMsBuildHome = tool 'Sonar MS'
                 withSonarQubeEnv('My SonarQube Server') {
-                  echo "${sqScannerMsBuildHome}"
+                  echo 'SonarQube' + SONAR
                 }
             }
         }
