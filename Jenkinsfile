@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SONAR = tool 'Sonar MS'
+        SONAR = tool 'SonarMS'
     }
     stages {
         stage('SonarQube') {
