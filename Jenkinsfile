@@ -6,8 +6,12 @@ pipeline {
     stages {
         stage('SonarQube') {
             steps {
+                script {
+                   // requires SonarQube Scanner 2.8+
+                   scannerHome = tool 'SonarMS'
+                }
                 withSonarQubeEnv('My SonarQube Server') {
-                  echo 'SonarQube' + SONAR
+                    echo '${scannerHome}'
                 }
             }
         }
