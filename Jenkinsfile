@@ -10,8 +10,8 @@ pipeline {
                 }
 		    echo "WORKSPACE - ${WORKSPACE}"
 		    echo "JENKINS_HOME - ${JENKINS_HOME}"
-		    echo "GIT_COMMITTER_EMAIL - ${GIT_COMMITTER_EMAIL}"
-		    echo "GIT_AUTHOR_EMAIL - ${GIT_AUTHOR_EMAIL}"
+		    echo "GIT_COMMITTER_EMAIL - ${env.GIT_COMMITTER_EMAIL}"
+		    echo "GIT_AUTHOR_EMAIL - ${env.GIT_AUTHOR_EMAIL}"
                 withSonarQubeEnv('SonarServer') {
                     echo "%SONAR_HOST_URL%"
                     sh "dotnet ${scannerBuild} begin /k:${projectKey} /n:${projectKey} /v:1.0 /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.issuesReport.html.enable=true"
