@@ -26,7 +26,7 @@ pipeline {
                     ).trim()
                 }
 
-                sh "dotnet /etc/sonarQube/SendSonarReports ${WORKSPACE} ${committerEmail} ${projectKey}"
+                sh "dotnet /etc/sonarQube/SendSonarReports.dll ${WORKSPACE} ${committerEmail} ${projectKey}"
             }
         }
     }
