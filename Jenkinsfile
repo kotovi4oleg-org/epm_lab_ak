@@ -13,9 +13,9 @@ pipeline {
                     for directory in `find $WORKSPACE -type d -name \'*Tests\'`; do
                         echo "$directory found, with parent: $(dirname $directory)"
                         dotnet add $directory package coverlet.msbuild
-                        dotnet test $directory /p:CollectCoverage=true /p:CoverletOutputFormat=\"opencover\" /p:CoverletOutput=\"$directory\"
+                        dotnet test $directory /p:CollectCoverage=true /p:CoverletOutputFormat=\"opencover\" /p:CoverletOutput=\"$WORKSPACE\"
                     done'''
-                    sh "dotnet ${scannerBuild} begin /k:${projectKey} /n:${projectKey} /v:1.0 /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.issuesReport.html.enable=true"
+                    sh "dotnet ${scannerBuild} begin /k:${projectKey} /n:${projectKey} /v:1.0 /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.cs.opencover.reportsPaths=$WORKSPACE"
                     sh 'dotnet build'
                     sh "dotnet ${scannerBuild} end"
                     sh "java -jar /etc/sonar-cnes-report.jar -p ${projectKey} -s ${SONAR_HOST_URL}"
