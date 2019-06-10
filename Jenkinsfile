@@ -9,6 +9,10 @@ pipeline {
                     projectKey = env.GIT_URL.tokenize('/')[3].split("\\.")[0].replace("_", "")
                 }
                 withSonarQubeEnv('SonarServer') {
+                    sh '''#!/bin/bash +x
+                    for directory in `find $WORKSPACE -type d -name \'my_subfolder_?.?.?*\'`; do
+                        echo "$directory found, with parent: $(dirname $directory)"
+                    done'''
                     sh "dotnet ${scannerBuild} begin /k:${projectKey} /n:${projectKey} /v:1.0 /d:sonar.host.url=${SONAR_HOST_URL} /d:sonar.issuesReport.html.enable=true"
                     sh 'dotnet build'
                     sh "dotnet ${scannerBuild} end"
