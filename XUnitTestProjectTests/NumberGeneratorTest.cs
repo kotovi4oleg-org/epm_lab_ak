@@ -1,5 +1,6 @@
 using MyCoreApp;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace XUnitTestProjectTests
