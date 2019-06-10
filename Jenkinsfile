@@ -22,6 +22,11 @@ pipeline {
                 }
             }
         }
+        stage("Checking Quality Gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         stage('ReportBuilder') {
             steps {
                 script {
